@@ -2,20 +2,55 @@
 <html>
   <head>
     <title>Todo app</title>
+
   </head>
   <body>
-    <h1>My Todo app</h1>
-    <form>
-    	<input type="Text" name="EnterTask" value="EnterTask">
-    	
-    	<input type="button" name="Submit" id="Submit" value="submit">
+  <div id="myDIV" class="header">
+  <h2>My To Do List</h2>
+  <input type="text" id="myInput" placeholder="Title..."> <br>
 
-    </form>
-    <ul>
-    	<li> Learn Java</li>
-    	<li> Learn Github </li>
-    </ul>
-   
+  <input type="button" name="Add New Task" value="Add New Task" span onclick="newElement()" class="addBtn">
+</div>
+
+<ul id="myUL">
+  <li>Learn Java</li>
+  <li class="checked">Pay bills</li>
   
-  </body>
+</ul>
+
+<script type="text/javascript">
+	function newElement() 
+	{
+  		var li = document.createElement("li");
+  		var inputValue = document.getElementById("myInput").value;
+  		var t = document.createTextNode(inputValue);
+  		li.appendChild(t);
+ 		if (inputValue === '')
+ 		 {
+    		alert("You must write something!");
+  		 } 
+  		 else 
+  		 {
+       		document.getElementById("myUL").appendChild(li);
+  		 }
+  		document.getElementById("myInput").value = "";
+
+  		var span = document.createElement("SPAN");
+  		var txt = document.createTextNode("\u00D7");
+  		span.className = "close";
+  		span.appendChild(txt);
+  		li.appendChild(span);
+
+  		for (i = 0; i < close.length; i++)
+  		{
+    		close[i].onclick = function() 
+    	{
+      		var div = this.parentElement;
+      		div.style.display = "none";
+    	}
+  	}
+}
+
+</script>
+</body>
 </html>
