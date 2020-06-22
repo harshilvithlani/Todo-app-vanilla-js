@@ -1,59 +1,33 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Todo app</title>
-
-  </head>
-  <body>
-  <div id="myDIV" class="header">
-  <h2>My To Do List</h2>
-  <input type="text" id="myInput" placeholder="Title..."/> <br/>
-
-  <input type="submit" name="Add New Task" value="Add New Task" onclick="newElement()" class="addBtn"/>
-</div>
-
-<ul id="myUL">
-  <li>Learn Java</li>
-  <li>Pay bills</li>
-  
-</ul>
-
-<script type="text/javascript">
-  function newElement() 
-  {
-      var li = document.createElement("li");
-      var inputValue = document.getElementById("myInput").value;
-      var t = document.createTextNode(inputValue);
-      li.appendChild(t);
-    if (inputValue === '')
-     {
-        alert("You must write something!");
-       } 
-       else 
-       {
-          document.getElementById("myUL").appendChild(li);
-       }
-      document.getElementById("myInput").value = "";
-
-      var span = document.createElement("SPAN");
-      var txt = document.createTextNode("\u00D7");
-      span.className = "close";
-      span.appendChild(txt);
-      li.appendChild(span);
-
-      for (i = 0; i < close.length; i++)
-      {
-        close[i].onclick = function event()
-        {
-          event.preventDefault();
-        }
-      {
-          var div = this.parentElement;
-          div.style.display = "none";
-      }
+<head>
+  <title>TO DO APP</title>
+</head>
+<body>
+  <h1> TO DO APP</h1>
+  <form id="todoform">
+    <input id="todoInput" />
+    <button type="button" onclick="todoList()">
+      ADD TASK
+      
+    </button>
+  </form>
+   <ul id="todoList">
+     
+   </ul>
+   <ul>
+     <li> Learn Java</li>
+   </ul>
+   <script>
+     function todoList()
+    {
+      var item = document.getElementById("todoInput").value
+      var text = document.createTextNode(item)
+      var newItem = document.createElement("li")
+      newItem.appendChild(text)
+      document.getElementById("todoList").appendChild(newItem)
     }
-}
+   </script>
 
-</script>
 </body>
 </html>
