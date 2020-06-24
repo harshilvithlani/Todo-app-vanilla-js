@@ -1,21 +1,33 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Todo app</title>
-  </head>
-  <body>
-    <h1>My Todo app</h1>
-    <form>
-    	<input type="Text" name="EnterTask" value="EnterTask">
-    	
-    	<input type="button" name="Submit" id="Submit" value="submit">
+<head>
+  <title>TO DO APP</title>
+</head>
+<body>
+  <h1> TO DO APP</h1>
+  <form id="todoform">
+    <input id="todoInput" />
+    <button type="button" onclick="todoList()">
+      ADD TASK
+      
+    </button>
+  </form>
+   <ul id="todoList">
+     
+   </ul>
+   <ul>
+     <li> Learn Java</li>
+   </ul>
+   <script>
+     function todoList()
+    {
+      var item = document.getElementById("todoInput").value
+      var text = document.createTextNode(item)
+      var newItem = document.createElement("li")
+      newItem.appendChild(text)
+      document.getElementById("todoList").appendChild(newItem)
+    }
+   </script>
 
-    </form>
-    <ul>
-    	<li> Learn Java</li>
-    	<li> Learn Github </li>
-    </ul>
-   
-  
-  </body>
+</body>
 </html>
