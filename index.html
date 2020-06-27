@@ -1,90 +1,84 @@
-<!doctype html>
+
 <html>
 <head>
-<title>To Do List</title>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>TO DO APP</title>
 </head>
 <body>
-<h1> To Do List</h1>
-<div id = "listBox">
-<input type="text" id="inItemText"><button id = "btnAdd">Add</button>
-</div>
-<div class="tasks-parent">
-      <h4>Tasks:</h4>
-<ul id = "todolist">
-</ul>
-</div>
-<script>
-function updateItemStatus(){
-var cbId = this.id.replace("cb_", "");
-var itemText = document.getElementById("item_" + cbId);
+    <div id="container">
+        <div class="controls">
+            <h1>My To-do LIST</h1>
+            <input type="text" name="" id="input"><br>
+            <button type="button" id="add">Add Task</button>  
+            <button type="button" id="remove">Remove Task</button>  
+        </div>
+        <ul id="list">
+            <li class="mycheck"><input type="checkbox" id="check"><label >
+				Go to Gym</label></li>
+            <li class="mycheck"><input type="checkbox" id="check"><label >
+				Read Articles on IncludeHelp</label></li>
+            <li class="mycheck"><input type="checkbox" id="check"><label >
+				Learn JavaScript</label></li>
+        </ul>
+    </div>
+    <script type="text/javascript">
+		var ul = document.getElementById('list')    
+		var li;
+		var addButton = document.getElementById('add')  
+		addButton.addEventListener("click",addItem)
 
-if(this.checked){
-itemText.style.textDecoration = "line-through";
-}
-else{
-itemText.style.textDecoration = "none";
-}
+		function addItem()
+		{                        
+    		var input = document.getElementById('input')        
+    		var item = input.value;             
+    		var textNode = document.createTextNode(item)    
+    		if (item == '')
+    		{       
+    			msg= "Enter your Task"
+        		alert(msg)
+        		return false
+        	} 
+    		else 
+    		{                
+        		li = document.createElement('li')       
+        		let checkbox = document.createElement('input')         
+        		checkbox.type = 'checkbox'              
+        		checkbox.setAttribute('id','check')         
+       
+     		   let label = document.createElement('label')         
 
-}
+        		ul.appendChild(label)                       
+        		li.appendChild(checkbox)
+        		label.appendChild(textNode)
+        		li.appendChild(label)
+        		ul.insertBefore(li, ul.childNodes[0])
+        		setTimeout(()=>
+        		{
+            		li.className = 'visual'
+        		},5)
+        		input.value = " "               
+    		}
+		}
 
+			var removeButton = document.getElementById('remove')        
+			removeButton.addEventListener("click",removeItem)       
 
-function addNewItem(list, itemText) {
-
-var date = new Date();
-var id = "" + date.getMinutes(); + date.getSeconds() + 
-  date.getMilliseconds() + "";
-
-var listItem = document.createElement("li");
-listItem.id = "li_" + id;
-
-var checkBox = document.createElement("input");
-checkBox.type = "checkbox";
-checkBox.id = "cb_" + id;
-checkBox.onclick = updateItemStatus;
-
-var span = document.createElement("span");
-span.id = "item_" + id;
-span.innerText = itemText;
-
-
-listItem.appendChild(checkBox);
-listItem.appendChild(span);
-
-list.appendChild(listItem);
-}
-
-var inItemText = document.getElementById("inItemText");
-inItemText.focus();
-
-var btnNew = document.getElementById("btnAdd");
-btnNew.onclick = function(){
-var inItemText = document.getElementById("inItemText");
-
-var itemText = inItemText.value;
-if(!itemText || itemText === "" || itemText === " "){
-    return false;
-}
-
-addNewItem(document.getElementById("todolist"), itemText);
-};
-
-inItemText.onkeyup = function(event) {
-
-if(event.which == 13){
-var itemText = inItemText.value;
-
-if(!itemText || itemText === "" || itemText === " "){
-    return false;
-}
-
-addNewItem(document.getElementById("todolist"), itemText);
-
-inItemText.focus();
-inItemText.select();
-}
-
-};
+			function removeItem()
+			{              
+    			li=ul.children
+    		for (let index = 0; index < li.length; index++)
+     		{   
+        		const element = li[index];              //line 20
+        	while(li[index] && li[index].children[0].checked)
+        	{      
+        	    ul.removeChild(li[index])
+        	}
+        
+   		 }   
+	}
 </script>
 </body>
 </html>
